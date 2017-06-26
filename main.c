@@ -30,20 +30,24 @@ int fibonacci_rec(int n)
 	return (fibonacci_rec(n - 2) + fibonacci_rec(n - 1));
 }
 
-int fibonacci_iter_n(int n, int result, int count, int p_result)
-{
-	if (count > n) {
-		return result;
-	}
-	if (count > 1) {
-		return fibonacci_iter_n(n, result + p_result, count + 1, result);
-	}
-	return -1;
-}
+
 
 int fibonacci_iter(int n)
 {
-	return fibonacci_iter_n(n, 1, 2, 1);
+	int count = 2;
+	int result = 1;
+	int previousResult = 1;
+	int tmp = 0;
+	
+	while(count <= n)
+	{
+		tmp = result;
+		result += previousResult;
+		previousResult = tmp;
+		count++;
+	}
+
+	return result;
 }
 
 void print_array(int arr[], int num)
